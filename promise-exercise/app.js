@@ -1,5 +1,5 @@
-const orderApi = require('./src/order.api');
-const customerApi = require('./src/customer.api');
+const orderApi = require('./lib/order.api');
+const customerApi = require('./lib/customer.api');
 
 const submitOrder = (user) => {
 

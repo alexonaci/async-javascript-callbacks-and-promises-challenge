@@ -1,21 +1,8 @@
-const cart = {
-    id: 55555,
-    userId: 12345,
-    items: [
-        {id: 11111, name: 'Perna Dormeo'},
-        {id: 52461, name: 'Olive Oil'}
-    ]
-};
-
-const profile = {
-    id: 12345,
-    name: 'Mihaita',
-    zipCode: 55555
-};
+const {shoppingData} = require('./shopping-data');
 
 const getShoppingCartAsync = (user) => {
     return new Promise((resolve, reject) => {
-        resolve(cart);
+        resolve(shoppingData.cart);
     })
 };
 
@@ -26,12 +13,10 @@ const placeOrderAsync = (shoppingCart, shippingRate) => {
 };
 
 const calculateShippingSync = (shoppingCart, zipCode) => {
-
-    if (shoppingCart !== cart) {
+    if (shoppingCart !== shoppingData.cart) {
         throw new Error("Error in calculateShipping: Invalid cart");
     }
-
-    if (zipCode !== profile.zipCode) {
+    if (zipCode !== shoppingData.profile.zipCode) {
         throw new Error("Error in calculateShipping: Invalid zip code");
     }
 
