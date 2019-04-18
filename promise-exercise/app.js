@@ -26,5 +26,5 @@ const submitOrder = (user) => {
     console.log(`Your order ${orderSuccessful? "was" : "was NOT"} placed successfully`);
 };
 
-submitOrder();
+submitOrder(12345);
 
