@@ -3,8 +3,8 @@ const shoppingData = {
         id: 55555,
         userId: 12345,
         items: [
-            {id: 11111, name: 'Perna Dormeo'},
-            {id: 52461, name: 'Olive Oil'}
+            { id: 11111, name: 'Perna Dormeo' },
+            { id: 52461, name: 'Olive Oil' }
         ]
     },
     profile: {

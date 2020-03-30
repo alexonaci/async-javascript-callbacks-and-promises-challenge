@@ -1,6 +1,6 @@
 const request = require('request');
 
-const USER_API = 'https://randomuser.me/api/stricam';
+const USER_API = 'https://randomuser.me/api/';
 const BACON_API = 'https://baconipsum.com/api/?type=all-meat&sentences=1&start-with-lorem=1';
 
 const options = {
@@ -26,7 +26,7 @@ const getPromisedStuffAsync = (url) => {
     return new Promise((resolve, reject) => {
         request(options, (err, res, body) => {
             if (err) {
-                reject('ERRORO:' + err);
+                reject('ERRORO:');
             }
             resolve(JSON.parse(body));
         })
@@ -46,10 +46,11 @@ getPromisedStuffAsync(BACON_API)
     });
 
 
+// https://sung.codes/blog/2019/05/18/promise-race-vs-promise-any-and-promise-all-vs-promise-allsettled/
 Promise.all([getPromisedStuffAsync(BACON_API), getPromisedStuffAsync(USER_API)])
     .then((response) => {
         console.log(response)
     })
     .catch((err) => {
-       console.error(err);
+        console.error(err);
     });

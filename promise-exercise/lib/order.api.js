@@ -1,4 +1,4 @@
-const {shoppingData} = require('./shopping-data');
+const { shoppingData } = require('./shopping-data');
 const USER_ERROR_MESSAGE = 'Cannot find user, our super big db cluster only supports one entry and that one is 12345!';
 
 const getShoppingCartAsync = (user) => {
