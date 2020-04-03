@@ -21,6 +21,7 @@ const optionsBacon = {
     }
 };
 
+
 const getPromisedStuffAsync = (url) => {
     options.url = url;
     return new Promise((resolve, reject) => {

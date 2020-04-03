@@ -1,25 +1,49 @@
-import Stuff from './newClass';
+// WEB API https://developer.mozilla.org/it/docs/Web/API
+// Networks - fetch(), xhr (XML- format, http protocol, request - request)
+// DOM - document
+// Timers: setTimeout, setInterval, setImmediate (Node.js)
+// Storage: localStorage(), 
+// Console: console.log()
 
-const USER_API = 'https://randomuser.me/api/23123';
 
-function convertToJson(input) {
-    return input.json();
+// Javascript has: Execution thread, execution stack
+// const myFunction = function () { console.log('1') }
+// setTimeout(myFunction, 0);
+
+// setTimeout(() => { console.log(6) }, 0); // second
+
+// setTimeout(() => {
+//     setTimeout(() => { console.log(5) }, 1000); // fourth
+// }, 1000);
+
+// setTimeout(() => { console.log(6) }, 1000); // third
+
+// console.log('2'); // first
+
+var i;
+
+// for (i = 0; i < 4; i++) {
+//     // 0
+//     (function (i) {
+//         setTimeout(() => {
+//             console.log(i);
+//         }, 1000);
+//     })(i)
+
+// }
+
+
+const mama = () => {
+    console.log('meme');
 }
 
-function displayUserName(data) {
-    if (data.results && data.results.length > 0) {
-        data.results.forEach(({ name = { first: '' } }) => {
-            console.log(name.first);
-        });
-    }
-}
 
-const getUsers = fetch(USER_API);
 
-getUsers.then(convertToJson).then(displayUserName).catch((error) => {
-    console.log('You got a network error ;)');
-})
+//..setTimeout
 
-console.log('My code');
 
-console.log(Stuff());
+// arr.forEach((element, index) => {
+//     setTimeout(() => {
+//         console.log(index);
+//     }, 1000);
+// })
