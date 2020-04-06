@@ -151,6 +151,14 @@ function sortAreas(arr) {
     })
 }
 
+function sortAreasShort(arr) {
+    return arr.sort((a, b) => {
+        const areaA = a.width * a.height;
+        const areaB = b.width * b.height;
+        return areaA - areaB;
+    })
+}
+
 console.log('sortedAreas', sortAreas(demoArr));
 
 // console.log('Number of colors: ', noColors(demoArr));
