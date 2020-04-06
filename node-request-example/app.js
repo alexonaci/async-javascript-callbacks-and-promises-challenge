@@ -34,24 +34,44 @@ const getPromisedStuffAsync = (url) => {
     })
 };
 
-getPromisedStuffAsync(BACON_API)
-    .then((response) => {
-        console.log(response);
-        return getPromisedStuffAsync(USER_API);
-    })
-    .then((outputFromPreviousStuff) => {
-        console.log(outputFromPreviousStuff);
-    })
-    .catch((err) => {
-        console.error(err);
-    });
+
+// getPromisedStuffAsync(BACON_API)
+//     .then((response) => {
+//         console.log(response);
+//         return getPromisedStuffAsync(USER_API);
+//     })
+//     .then((outputFromPreviousStuff) => {
+//         console.log(outputFromPreviousStuff);
+//     })
+//     .catch((err) => {
+//         console.error('err');
+//     });
+
+//syntactic sugar
+async function procesAsyncStuff() {
+    try {
+        const baconResult = await getPromisedStuffAsync(BACON_API);
+        const userResult = await getPromisedStuffAsync(USER_API);
+        console.log(baconResult);
+        console.log(userResult);
+    } catch (err) {
+        console.log('err', err);
+    }
+}
+
+async function another() {
+    await procesAsyncStuff();
+    console.log('first');
+}
+
+another();
 
 
 // https://sung.codes/blog/2019/05/18/promise-race-vs-promise-any-and-promise-all-vs-promise-allsettled/
-Promise.all([getPromisedStuffAsync(BACON_API), getPromisedStuffAsync(USER_API)])
-    .then((response) => {
-        console.log(response)
-    })
-    .catch((err) => {
-        console.error(err);
-    });
+// Promise.all([getPromisedStuffAsync(BACON_API), getPromisedStuffAsync(USER_API)])
+//     .then((response) => {
+//         console.log(response)
+//     })
+//     .catch((err) => {
+//         console.error(err);
+//     });
