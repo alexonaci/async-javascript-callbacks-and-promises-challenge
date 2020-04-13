@@ -151,43 +151,186 @@ function sortAreas(arr) {
     })
 }
 
-function sortAreasShort(arr) {
-    return arr.sort((a, b) => {
-        const areaA = a.width * a.height;
-        const areaB = b.width * b.height;
-        return areaA - areaB;
-    })
+// function sortAreasShort(arr) {
+
+//     new.sort((a, b) => {
+//         const areaA = a.width * a.height;
+//         const areaB = b.width * b.height;
+//         return areaA - areaB;
+//     })
+
+//     return new;
+// }
+
+// console.log('sortedAreas', sortAreas(demoArr));
+
+
+let number = {}
+
+function noColors(arr) {
+    let numberOf = {};
+    for (let i = 0; i < arr.length; i++) {
+        let color = arr[i].color;
+        !numberOf[color] ? numberOf[color] = 1 : numberOf[color]++;
+    }
+    return numberOf;
 }
 
-console.log('sortedAreas', sortAreas(demoArr));
+function noColorsReduce(arr) {
+    return arr.reduce((accumulator, currentValue) => {
+        if (accumulator[currentValue.color]) {
+            accumulator[currentValue.color] += 1;
+        } else {
+            accumulator[currentValue.color] = 1;
+        }
+        return accumulator;
+    }, {})
+}
 
-// console.log('Number of colors: ', noColors(demoArr));
+console.log("Number of colors: ", noColors(demoArr));
+console.log("Number of colors reduce: ", noColorsReduce(demoArr));
 
-// /*
-// 10. Write a function that returns an array with all elements having a unique color. Any element after the first one that has a color that would repeat is not included in the array.
-// */
-// console.log('Unique Colors: ', uniqueColors(demoArr));
 
-// /*
-// 11. Write a function which inverts two numbers.
-// */
-// let a = 5, b = 8;
+/*
+10. Write a function that returns an array with all elements having a unique color. Any element after the first one that has a color that would repeat is not included in the array.
+*/
 
-// console.log('A:', a, 'B:', b);
+// const uniqueColors = demoArr => {
+//     var uniqueColorsArray = [];
+//     return demoArr.filter(({ color }) => {
+//         let colorNotExists = true;
+//         if (uniqueColorsArray.indexOf(color) > -1) {
+//             colorNotExists = false;
+//         } else {
+//             uniqueColorsArray.push(color);
+//         }
+//         return colorNotExists;
+//     })
+// }
+function uniqueColors(arr) {
+    let resArr = [];
+    arr.filter(function (item) {
+        let i = resArr.findIndex(x => x.color === item.color);
+        if (i <= -1) {
+            resArr.push({ id: item.id, color: item.color, height: item.height, width: item.height, distance: item.distance });
+        };
+    });
+    return resArr;
+};
 
-// /*
-// 12. Using the array below, get a variable that contains an array of objects structured like this:
-// [
-//   {subject: 'Chemistry', time: '9AM', teacher: 'Mr. Darnick'},
-//   ...
-// ]
-// */
-// const classes = [
-//     ['Chemistry', '9AM', 'Mr. Darnick'],
-//     ['Physics', '10:15AM', 'Mrs. Lithun'],
-//     ['Math', '11:30AM', 'Mrs. Vitalis']
-// ];
+console.log(demoArr);
+console.log('Unique Colors: ', uniqueColors(demoArr));
 
-// const objClasses = [];
+/*
+11. Write a function which inverts two numbers.
+*/
+let a = 5, b = 8;
 
-// console.log(objClasses);
+// a = a + b;
+// b = a - b;
+// a = a - b;
+
+// (function switchNumbers() {
+//     let switchHelper;
+//     switchHelper = a;
+//     a = b;
+//     b = switchHelper;
+// })();
+
+// function invert(a, b) {
+//     let temp = a;
+//     a = b;
+//     b = temp;
+//     console.log("A:", a, "B:", b);
+// }
+// invert(a, b);
+
+
+(function () {
+    // const myObject = {
+    //     prop: '3'
+    // }
+    // const { prop } = myObject;
+
+    // const myArr = [1, 2, 3]
+    // const [a, b] = myArr;
+
+    [a, b] = [b, a];
+})();
+
+
+console.log('A:', a, 'B:', b);
+
+/*
+12. Using the array below, get a variable that contains an array of objects structured like this:
+[
+  {subject: 'Chemistry', time: '9AM', teacher: 'Mr. Darnick'},
+  ...
+]
+*/
+const classes = [
+    ['Chemistry', '9AM', 'Mr. Darnick'],
+    ['Physics', '10:15AM', 'Mrs. Lithun'],
+    ['Math', '11:30AM', 'Mrs. Vitalis']
+];
+
+function transformInObjects(classes) {
+    const accumulator = [];
+    for (let i = 0; i < classes.length; i++) {
+        accumulator.push({
+            subject: classes[i][0],
+            time: classes[i][1],
+            teacher: classes[i][2],
+        })
+    }
+    return accumulator;
+}
+function objectify(arr) {
+    let objClasses = [];
+    arr.map((element) =>
+        objClasses.push({
+            subject: element[0],
+            time: element[1],
+            teacher: element[2],
+        })
+    );
+    return objClasses;
+}
+console.log(objectify(classes))
+
+const objClasses = [];
+
+let arrayOfObjects = classes.map(elem => {
+    return { subject: elem[0], time: elem[1], teacher: elem[2] }
+});
+
+/*     Adi ------       */
+class TeachingClass {
+    constructor(subject, time, teacher) {
+        this.subject = subject;
+        this.time = time;
+        this.teacher = teacher;
+    }
+}
+
+const objClasses = [];
+
+const objClassesCreator = (classes, objClasses) => {
+    classes.forEach(arr => {
+
+        objClasses.push(new TeachingClass(...arr));
+    });
+}
+
+objClassesCreator(classes, objClasses);
+/*     End of Adi ------       */
+
+const key = ['subject', 'time', 'teacher'];
+// Marian Horoiu
+const objClasses = classes.map((item) => {
+    return item.reduce((accumulator, currentValue, currentIndex) => {
+        accumulator[key[currentIndex]] = currentValue
+        return accumulator;
+    }, {});
+});
+console.log(objClasses);
