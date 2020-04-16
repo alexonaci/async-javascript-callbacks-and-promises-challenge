@@ -5,29 +5,32 @@ const submitOrder = (user) => {
   let shoppingCart, zipCode, shippingRate, orderSuccessful;
 
   // Get the current user's shopping cart
-  orderApi.getShoppingCartAsync(user).then((cart) => {
-    shoppingCart = cart;
-  });
-
-  // Also look up the ZIP code from their profile
-  customerApi.getProfileAsync(user).then((profile) => {
-    zipCode = profile.zipCode;
-  });
-
-  setTimeout(function () {
+  orderApi
+    .getShoppingCartAsync(user)
+    .then((cart) => {
+      shoppingCart = cart;
+    })
+    // Also look up the ZIP code from their profile
+    .then(
+      customerApi.getProfileAsync(user).then((profile) => {
+        zipCode = profile.zipCode;
+      })
+    )
     // Calculate the shipping fees
-    shippingRate = orderApi.calculateShippingSync(shoppingCart, zipCode);
-    // Submit the order
-    orderApi.placeOrderAsync(shoppingCart, shippingRate).then((success) => {
-      orderSuccessful = success;
+    .then(function () {
+      shippingRate = orderApi.calculateShippingSync(shoppingCart, zipCode);
+      orderApi.placeOrderAsync(shoppingCart, shippingRate).then((success) => {
+        orderSuccessful = success;
+        console.log(
+          `Your order ${
+            orderSuccessful ? "was" : "was NOT"
+          } placed successfully`
+        );
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  }, 3000);
-
-  setTimeout(function () {
-    console.log(
-      `Your order ${orderSuccessful ? "was" : "was NOT"} placed successfully`
-    );
-  }, 5000);
 };
 
 submitOrder(12345);
