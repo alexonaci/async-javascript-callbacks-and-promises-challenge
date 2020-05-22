@@ -1,0 +1,19 @@
+{
+  "name": "async-javascript-callbacks-and-promises-challenge",
+  "version": "1.0.0",
+  "description": "- install the dependecies where you see a package.json: `npm install`\r - run `node file.js`\r - have a look on this guide: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment\r - and this tutorial: https://www.youtube.com/watch?v=jHDhaSSKmB0\r - the project contains 3 folders, each of them representing a small example or challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teopetric/async-javascript-callbacks-and-promises-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teopetric/async-javascript-callbacks-and-promises-challenge/issues"
+  },
+  "homepage": "https://github.com/teopetric/async-javascript-callbacks-and-promises-challenge#readme"
+}
