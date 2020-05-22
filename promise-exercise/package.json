@@ -1,0 +1,14 @@
+{
+  "name": "promise-exercise",
+  "version": "1.0.0",
+  "description": "- Complete the challenge by making the program output `Your order was placed successfully`\r - Only `app.js` should be changed",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
